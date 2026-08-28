@@ -10,9 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.1.11",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^5.12.0",
-    "tailwindcss": "^4.1.11",
-    "@tailwindcss/vite": "^4.1.11"
+    "tailwindcss": "^4.1.11"
   },
   "allowScripts": {
     "esbuild@0.25.12": true,

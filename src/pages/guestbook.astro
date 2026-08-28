@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import profile from '../data/profile.json';
+
+const mb = profile.messageBoard;
+---
+
+<BaseLayout title={`${mb.title} · ${profile.siteTitle}`} description={mb.subtitle}>
+  <section class="py-12 sm:py-16">
+    <h1 class="text-3xl font-bold text-ink sm:text-4xl" data-reveal>{mb.title}</h1>
+    <p class="mt-2 text-ink/70" data-reveal>{mb.subtitle}</p>
+
+    <form
+      id="guestbook-form"
+      class="mt-8 max-w-2xl space-y-4 rounded-xl border border-line bg-card p-6 shadow-[0_4px_16px_rgba(248,165,184,0.25)] sm:p-8"
+      data-reveal
+    >
+      <input
+        type="text"
+        name="name"
+        maxlength="20"
+        placeholder={mb.namePlaceholder}
+        class="w-full rounded-full border border-line bg-blush px-4 py-2.5 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
+      />
+      <textarea
+        name="message"
+        rows="4"
+        maxlength="500"
+        required
+        placeholder={mb.messagePlaceholder}
+        class="w-full resize-none rounded-xl border border-line bg-blush px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
+      ></textarea>
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <p class="text-xs text-ink/60">{mb.pendingNote}</p>
+        <button
+          type="submit"
+          class="rounded-full bg-primary px-5 py-2 text-sm font-medium text-ink transition hover:bg-primary-deep"
+        >
+          {mb.submit}
+        </button>
+      </div>
+    </form>
+
+    <ul id="guestbook-list" class="mt-8 max-w-2xl space-y-4"></ul>
+  </section>
+
+  <script>
+    const form = document.getElementById('guestbook-form');
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+    });
+  </script>
+</BaseLayout>

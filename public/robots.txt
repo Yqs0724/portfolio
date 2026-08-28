@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://su-portfolio-eight.vercel.app/sitemap-index.xml

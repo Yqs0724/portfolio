@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 import profile from '../data/profile.json';
-import projects from '../data/projects.json';
 import '../styles/global.css';
 
 interface Props {
@@ -15,8 +14,8 @@ const { title, description = profile.tagline } = Astro.props;
 const ogImage = Astro.site ? new URL('/og-image.png', Astro.site).href : '/og-image.png';
 const navLinks = [
   { href: '/', label: profile.nav.home },
-  ...(projects.length >= 3 ? [{ href: '/projects/', label: profile.nav.projects }] : []),
-  { href: '/about/', label: profile.nav.about },
+  { href: '/projects/', label: profile.nav.projects },
+  { href: '/guestbook/', label: profile.nav.guestbook },
 ];
 ---
 
@@ -61,6 +60,10 @@ const navLinks = [
         { threshold: 0.12 },
       );
       items.forEach((el) => observer.observe(el));
+    </script>
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
     </script>
   </body>
 </html>

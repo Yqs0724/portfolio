@@ -9,12 +9,13 @@ interface Props {
   email: string;
   github: string;
   labels: Labels;
+  id?: string;
 }
 
-const { title, email, github, labels } = Astro.props;
+const { title, email, github, labels, id } = Astro.props;
 ---
 
-<section class="py-12" data-reveal>
+<section id={id} class="scroll-mt-24 py-12" data-reveal>
   <h2 class="mb-4 text-2xl font-bold text-ink">{title}</h2>
   <div class="flex flex-wrap gap-3">
     {
