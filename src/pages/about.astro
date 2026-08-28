@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactSection from '../components/ContactSection.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import profile from '../data/profile.json';
+---
+
+<BaseLayout title={`${profile.aboutTitle} · ${profile.siteTitle}`}>
+  <section class="py-16 sm:py-20">
+    <h1 class="mb-8 text-3xl font-bold text-ink sm:text-4xl" data-reveal>{profile.aboutTitle}</h1>
+    <div
+      class="space-y-4 rounded-xl border border-line bg-card p-6 shadow-[0_4px_16px_rgba(248,165,184,0.25)] sm:p-8"
+      data-reveal
+    >
+      {profile.aboutParagraphs.map((paragraph) => <p class="leading-relaxed text-ink">{paragraph}</p>)}
+    </div>
+
+    <h2 class="mb-6 mt-10 text-2xl font-bold text-ink" data-reveal>{profile.timelineTitle}</h2>
+    <ul class="max-w-2xl" data-reveal>
+      {
+        profile.timeline.map((entry, index) => (
+          <TimelineItem entry={entry} isLast={index === profile.timeline.length - 1} />
+        ))
+      }
+    </ul>
+
+    <h2 class="mb-4 mt-10 text-2xl font-bold text-ink" data-reveal>{profile.skillsTitle}</h2>
+    <ul class="flex flex-wrap gap-3" data-reveal>
+      {
+        profile.skills.map((skill) => (
+          <li class="rounded-full border border-primary bg-primary/15 px-4 py-1.5 text-sm font-medium text-primary-deep">
+            {skill}
+          </li>
+        ))
+      }
+    </ul>
+
+    <ContactSection
+      title={profile.contactTitle}
+      email={profile.email}
+      github={profile.github}
+      labels={profile.labels}
+    />
+  </section>
+</BaseLayout>

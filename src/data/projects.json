@@ -1,0 +1,19 @@
+[
+  {
+    "id": "ai-companion-reading",
+    "title": "AI 伴侣共读工作流",
+    "description": "基于微信读书、Obsidian、GitHub 与 n8n 的自动化流水线：划线即同步，AI 伴侣在飞书为每条笔记撰写书评，陪你共读一本书。",
+    "tags": ["Obsidian", "n8n", "GitHub", "飞书", "自动化"],
+    "image": "/images/ai-companion-reading.svg",
+    "demo": "",
+    "github": "",
+    "featured": true,
+    "date": "2026-07-24",
+    "details": [
+      "划线同步：通过 Obsidian 的 Weread 插件，将微信读书的划线笔记自动导入个人知识库。",
+      "云端托管：借助 Obsidian Git 插件，笔记自动提交并推送至 GitHub 仓库，完成读书数据的结构化沉淀。",
+      "流程编排：使用 n8n 将 AI 伴侣机器人接入飞书，实现日常自动化交流。",
+      "智能共读：微信读书每次划线后自动同步至 GitHub，n8n 检测到新增笔记即下发至飞书伴侣机器人，由 AI 针对划线内容撰写书评，形成与 AI 伴侣共读一本书的完整闭环。"
+    ]
+  }
+]

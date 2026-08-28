@@ -1,0 +1,44 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button
+  id="back-to-top"
+  type="button"
+  aria-label={label}
+  class="pointer-events-none fixed bottom-6 right-6 z-20 flex h-11 w-11 translate-y-24 items-center justify-center rounded-full bg-primary text-ink opacity-0 shadow-[0_4px_16px_rgba(248,165,184,0.25)] transition hover:bg-primary-deep"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    class="h-5 w-5"
+  >
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+  </svg>
+</button>
+
+<script>
+  const button = document.getElementById('back-to-top');
+
+  const setHidden = (hidden: boolean) => {
+    if (!button) return;
+    button.classList.toggle('opacity-0', hidden);
+    button.classList.toggle('translate-y-24', hidden);
+    button.classList.toggle('pointer-events-none', hidden);
+  };
+
+  const onScroll = () => setHidden(window.scrollY <= 400);
+
+  button?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

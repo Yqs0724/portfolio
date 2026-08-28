@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import profile from '../data/profile.json';
+import projects from '../data/projects.json';
+---
+
+<BaseLayout title={`${profile.allProjectsTitle} · ${profile.siteTitle}`}>
+  <section class="py-16 sm:py-20">
+    <h1 class="mb-8 text-3xl font-bold text-ink sm:text-4xl" data-reveal>
+      {profile.allProjectsTitle}
+    </h1>
+    <div class="grid gap-6 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <div data-reveal>
+            <Card project={project} labels={profile.labels} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

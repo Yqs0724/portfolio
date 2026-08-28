@@ -1,0 +1,36 @@
+---
+export interface TimelineEntry {
+  period: string;
+  title: string;
+  role?: string;
+  description?: string;
+}
+
+interface Props {
+  entry: TimelineEntry;
+  isLast?: boolean;
+}
+
+const { entry, isLast = false } = Astro.props;
+---
+
+<li class="flex gap-4" data-reveal>
+  <div class="flex flex-col items-center">
+    <span class="mt-1.5 h-3 w-3 shrink-0 rounded-full bg-primary ring-4 ring-primary/20"></span>
+    {isLast ? null : <span class="mt-1 w-px flex-1 bg-line"></span>}
+  </div>
+  <div class={isLast ? 'pb-2' : 'pb-8'}>
+    <p class="text-xs text-ink/60">{entry.period}</p>
+    <h3 class="mt-0.5 font-bold text-ink">
+      {entry.title}
+      {
+        entry.role && (
+          <span class="ml-2 rounded-full bg-primary/15 px-2.5 py-0.5 text-xs font-medium text-primary-deep">
+            {entry.role}
+          </span>
+        )
+      }
+    </h3>
+    {entry.description && <p class="mt-1 text-sm leading-relaxed text-ink/80">{entry.description}</p>}
+  </div>
+</li>

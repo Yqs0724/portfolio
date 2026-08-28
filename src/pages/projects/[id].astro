@@ -1,0 +1,92 @@
+---
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import profile from '../../data/profile.json';
+import projects from '../../data/projects.json';
+
+export const getStaticPaths = (() =>
+  projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }))) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { project } = Astro.props;
+const details = project.details ?? [];
+const hasLinks = Boolean(project.demo || project.github);
+---
+
+<BaseLayout title={`${project.title} · ${profile.siteTitle}`} description={project.description}>
+  <article class="py-12 sm:py-16">
+    <a
+      href="/projects/"
+      class="text-sm font-medium text-primary-deep transition hover:underline"
+    >
+      ← {profile.allProjectsTitle}
+    </a>
+    <h1 class="mt-4 text-3xl font-bold text-ink sm:text-4xl">{project.title}</h1>
+    <p class="mt-2 text-sm text-ink/60">{project.date}</p>
+    <img
+      src={project.image}
+      alt={project.title}
+      class="mt-6 aspect-[16/10] w-full rounded-xl border border-line bg-blush object-cover shadow-[0_4px_16px_rgba(248,165,184,0.25)]"
+    />
+    <p class="mt-6 max-w-3xl leading-relaxed text-ink">{project.description}</p>
+
+    {
+      project.tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li class="rounded-full bg-primary/15 px-3 py-1 text-xs text-primary-deep">{tag}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    {
+      details.length > 0 && (
+        <section class="mt-10 max-w-3xl">
+          <h2 class="mb-4 text-xl font-bold text-ink">{profile.projectDetailsTitle}</h2>
+          <ol class="space-y-3">
+            {details.map((detail, index) => (
+              <li class="flex gap-3 rounded-xl border border-line bg-card p-4 shadow-[0_4px_16px_rgba(248,165,184,0.25)]">
+                <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/20 text-xs font-bold text-primary-deep">
+                  {index + 1}
+                </span>
+                <span class="text-sm leading-relaxed text-ink">{detail}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
+    {
+      hasLinks && (
+        <div class="mt-8 flex flex-wrap gap-3">
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener"
+              class="rounded-full bg-primary px-5 py-2 text-sm font-medium text-ink transition hover:bg-primary-deep"
+            >
+              {profile.labels.demo}
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener"
+              class="rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary-deep transition hover:bg-primary/15"
+            >
+              {profile.labels.source}
+            </a>
+          )}
+        </div>
+      )
+    }
+  </article>
+</BaseLayout>

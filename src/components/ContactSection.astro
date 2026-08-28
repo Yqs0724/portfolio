@@ -1,0 +1,43 @@
+---
+interface Labels {
+  email: string;
+  github: string;
+}
+
+interface Props {
+  title: string;
+  email: string;
+  github: string;
+  labels: Labels;
+}
+
+const { title, email, github, labels } = Astro.props;
+---
+
+<section class="py-12" data-reveal>
+  <h2 class="mb-4 text-2xl font-bold text-ink">{title}</h2>
+  <div class="flex flex-wrap gap-3">
+    {
+      email && (
+        <a
+          href={`mailto:${email}`}
+          class="rounded-full bg-primary px-5 py-2 text-sm font-medium text-ink transition hover:bg-primary-deep"
+        >
+          {labels.email}
+        </a>
+      )
+    }
+    {
+      github && (
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener"
+          class="rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary-deep transition hover:bg-primary/15"
+        >
+          {labels.github}
+        </a>
+      )
+    }
+  </div>
+</section>

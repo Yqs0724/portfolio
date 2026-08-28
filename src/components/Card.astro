@@ -1,0 +1,98 @@
+---
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  image: string;
+  demo: string;
+  github: string;
+  featured: boolean;
+  date: string;
+  details?: string[];
+}
+
+interface Labels {
+  demo: string;
+  source: string;
+  detail: string;
+}
+
+interface Props {
+  project: Project;
+  labels: Labels;
+}
+
+const { project, labels } = Astro.props;
+const hasDetails = Boolean(project.details?.length);
+const hasLinks = hasDetails || Boolean(project.demo || project.github);
+---
+
+<article
+  class="flex flex-col overflow-hidden rounded-xl border border-line bg-card shadow-[0_4px_16px_rgba(248,165,184,0.25)] transition hover:-translate-y-1"
+>
+  <div class="aspect-[16/10] w-full overflow-hidden bg-blush">
+    {
+      project.image ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          class="h-full w-full object-cover"
+          loading="lazy"
+        />
+      ) : null
+    }
+  </div>
+  <div class="flex flex-1 flex-col gap-3 p-5">
+    <div class="flex items-baseline justify-between gap-2">
+      <h3 class="text-lg font-bold text-ink">{project.title}</h3>
+      {project.date ? <span class="shrink-0 text-xs text-ink/60">{project.date}</span> : null}
+    </div>
+    <p class="text-sm leading-relaxed text-ink">{project.description}</p>
+    {
+      project.tags.length > 0 && (
+        <ul class="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <li class="rounded-full bg-primary/15 px-2.5 py-0.5 text-xs text-primary-deep">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )
+    }
+    {
+      hasLinks && (
+        <div class="mt-auto flex flex-wrap items-center gap-3 pt-2">
+          {hasDetails && (
+            <a
+              href={`/projects/${project.id}/`}
+              class="text-sm font-medium text-primary-deep transition hover:underline"
+            >
+              {labels.detail} →
+            </a>
+          )}
+          {project.demo && (
+            <a
+              href={project.demo}
+              target="_blank"
+              rel="noopener"
+              class="rounded-full bg-primary px-4 py-1.5 text-sm font-medium text-ink transition hover:bg-primary-deep"
+            >
+              {labels.demo}
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener"
+              class="rounded-full border border-primary px-4 py-1.5 text-sm font-medium text-primary-deep transition hover:bg-primary/15"
+            >
+              {labels.source}
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+</article>

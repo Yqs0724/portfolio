@@ -1,0 +1,42 @@
+---
+interface Labels {
+  github: string;
+}
+
+interface Props {
+  name: string;
+  email?: string;
+  github?: string;
+  labels: Labels;
+}
+
+const { name, email = '', github = '', labels } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-16 border-t border-line">
+  <div class="mx-auto w-full max-w-5xl px-4 py-8 text-center text-sm text-ink/70 sm:px-6">
+    <p>&copy; {year} {name}</p>
+    {
+      (email || github) && (
+        <p class="mt-2 flex flex-wrap items-center justify-center gap-4">
+          {email && (
+            <a href={`mailto:${email}`} class="transition hover:text-primary-deep">
+              {email}
+            </a>
+          )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener"
+              class="transition hover:text-primary-deep"
+            >
+              {labels.github}
+            </a>
+          )}
+        </p>
+      )
+    }
+  </div>
+</footer>

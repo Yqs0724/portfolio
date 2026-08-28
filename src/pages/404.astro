@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import profile from '../data/profile.json';
+
+const nf = profile.notFound;
+---
+
+<BaseLayout title={`${nf.title} · ${profile.siteTitle}`} description={nf.description}>
+  <section class="flex flex-col items-center gap-5 py-24 text-center sm:py-32">
+    <p class="text-7xl font-bold text-primary-deep sm:text-8xl" data-reveal>{nf.code}</p>
+    <h1 class="text-2xl font-bold text-ink" data-reveal>{nf.title}</h1>
+    <p class="text-ink/70" data-reveal>{nf.description}</p>
+    <a
+      href="/"
+      class="rounded-full bg-primary px-6 py-2.5 font-medium text-ink transition hover:bg-primary-deep"
+      data-reveal
+    >
+      {nf.cta}
+    </a>
+  </section>
+</BaseLayout>

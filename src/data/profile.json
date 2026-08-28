@@ -1,0 +1,53 @@
+{
+  "name": "苏",
+  "siteTitle": "苏的个人作品集",
+  "tagline": "公孙离、嫦娥、孙权厨",
+  "avatar": "/images/ssy.jpg",
+  "avatarAlt": "作品照片",
+  "nav": {
+    "home": "首页",
+    "projects": "全部项目",
+    "about": "关于我"
+  },
+  "hero": {
+    "ctaPrimary": "看看我的项目",
+    "ctaSecondary": "关于我"
+  },
+  "labels": {
+    "demo": "在线演示",
+    "source": "源码",
+    "detail": "查看详情",
+    "email": "邮件联系",
+    "github": "GitHub 主页",
+    "backToTop": "回到顶部"
+  },
+  "projectsSection": "精选项目",
+  "allProjectsTitle": "全部项目",
+  "projectDetailsTitle": "项目详情",
+  "aboutTitle": "关于我",
+  "aboutParagraphs": ["筱秋厨"],
+  "timelineTitle": "经历",
+  "timeline": [
+    {
+      "period": "2020 – 2024",
+      "title": "嘉庚学院",
+      "role": "本科"
+    },
+    {
+      "period": "2024 – 至今",
+      "title": "家里蹲大学",
+      "role": "在读"
+    }
+  ],
+  "skillsTitle": "核心技能",
+  "skills": ["吹牛", "英语六级", "日语初学者", "王者荣耀 1200 分选手"],
+  "contactTitle": "联系我",
+  "email": "2505761288@qq.com",
+  "github": "https://github.com/YQS0724",
+  "notFound": {
+    "code": "404",
+    "title": "页面走丢了",
+    "description": "这里空空的，什么都没有。",
+    "cta": "回到首页"
+  }
+}
